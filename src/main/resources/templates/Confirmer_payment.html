@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="layout.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Historique</title>
+</head>
+<body>
+<h1 th:text="${prix}"></h1>
+<div layout:fragment="content">
+<section class=" ftco-section ftco-no-pt bg-light w-100 d-flex align-items-center ">
+    <div class="container w-50">
+        <form action="#" method="post" class=" request-form ftco-animate bg-primary" th:object="${paiment}">
+            <h2>Prix Total</h2>
+
+            <div class="form-group">
+                <h1  th:text="${prix}+'DH'" class="text-white label"></h1>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Comfirmer Paiemnet" class="btn btn-secondary py-3 px-4">
+            </div>
+        </form>
+    </div>
+</section>
+</div>
+</body>
+</html>

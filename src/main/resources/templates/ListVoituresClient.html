@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="layout.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Voitures</title>
+    <style>
+        .cov{
+            background-size: cover !important;
+            background-repeat: no-repeat !important;
+            background-position: center center !important;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row" >
+            <div class="col-md-4"th:each="v:${voitures}">
+                <div class="car-wrap rounded ftco-animate fadeInUp ftco-animated">
+                    <div class="cov img rounded d-flex align-items-end" th:style="' background:url(/cssAdmin/Admin_Pic/'+${v.image}+');'">
+                    </div>
+                    <div class="text">
+                        <h2 class="mb-0" th:text="${v.nom}"><a href="#"></a></h2>
+                        <div class="d-flex mb-3">
+                            <span class="cat" th:text="${v.marque}"></span>
+                            <p class="price ml-auto"th:text="${v.prix}"></p> <span>Dh/day</span>
+                        </div>
+                        <p class="d-flex mb-0 d-block"><a th:href="@{/Voitures_Selectionner/{matricule}('matricule'=${v.matricule})}" class="btn btn-primary py-2 mr-1">Reserver</a> <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Details</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

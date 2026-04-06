@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="layoutadmin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter Admin</title>
+</head>
+<body>
+<div layout:fragment="content">
+            <div class="bg-light rounded h-100 p-4 justify-content-around">
+                <h6 class="mb-4 text-center">Ajouter Admin</h6>
+                <form action="" method="post" th:object="${admin}" enctype="multipart/form-data">
+                    <h4 th:if="${eror != null}" th:text="${eror}" class="text-danger text-center"></h4>
+
+                    <div class="d-flex justify-content-around">
+                 <div>
+                    <div class="mb-3">
+                        <label for="nom" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="nom"  th:field="*{nom}"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="prenom" class="form-label">Prenom</label>
+                        <input type="text" class="form-control" id="prenom"  th:field="*{prenom}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="tele" class="form-label">Téléphone</label>
+                        <input type="text" class="form-control" id="tele"  th:field="*{telephone}"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Image</label>
+                        <input class="form-control" type="file" id="formFile" name="file" />
+                    </div>
+
+                 </div>
+                 <div>
+                     <div class="mb-3">
+                         <label for="exampleInputEmail1" class="form-label">Email address</label>
+                         <input type="email" class="form-control" id="exampleInputEmail1"  th:field="*{email}"/>
+                     </div>
+                    <div class="mb-3">
+                        <label for="login" class="form-label">Login</label>
+                        <input type="text" class="form-control" id="login"  th:field="*{login}"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pwd" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="pwd"  th:field="*{password}"/>
+                    </div>
+                 </div>
+                 </div>
+                 <div class="text-center w-100">
+                    <button type="submit" class="btn btn-primary w-25">Ajouter</button>
+                 </div>
+                </form>
+            </div>
+</div>
+</body>
+</html>

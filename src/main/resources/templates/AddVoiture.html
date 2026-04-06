@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layoutadmin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter Voiture</title>
+</head>
+<body>
+  <div layout:fragment="content">
+    <div class="bg-light rounded h-100 p-4 justify-content-around">
+        <h6 class="mb-4 text-center">Ajouter Voiture</h6>
+        <form action="" method="post" th:object="${voiture}" enctype="multipart/form-data">
+            <div class="d-flex justify-content-around">
+                <div>
+                    <div class="mb-3">
+                        <label for="matricule" class="form-label">Matricule</label>
+                        <input type="text" class="form-control" id="matricule"  th:field="*{matricule}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nom" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="nom"  th:field="*{nom}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="marque" class="form-label">Marque</label>
+                        <input type="text" class="form-control" id="marque"  th:field="*{marque}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="model" class="form-label">Model</label>
+                        <input type="text" class="form-control" id="model"  th:field="*{model}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="type_de_transmition" class="form-label">Type de Transmition</label>
+                        <select class="form-control"  id="type_de_transmition" th:field="*{type_de_transmition}">
+                            <option value="Automatique">Automatique</option>
+                            <option value="Manuel">Manuel</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <div class="mb-3">
+                        <label for="type_de_gasol" class="form-label">Type de Gasol</label>
+                        <select class="form-control"  id="type_de_gasol" th:field="*{type_de_gasol}">
+                            <option value="Essence">Essence</option>
+                            <option value="Mazot">Mazot</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Image</label>
+                        <input class="form-control" type="file" id="formFile" name="file" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="capacite" class="form-label">Capacite</label>
+                        <input type="text" class="form-control" id="capacite"  th:field="*{capacite}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="prix" class="form-label">prix</label>
+                        <input type="text" class="form-control" id="prix"  th:field="*{prix}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center w-100">
+                <button type="submit" class="btn btn-primary w-25">Ajouter</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</body>
+</html>

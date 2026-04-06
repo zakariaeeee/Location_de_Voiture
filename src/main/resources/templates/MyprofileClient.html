@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="layout.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Voitures</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="bg-light rounded h-100 p-4 justify-content-around">
+        <h6 class="mb-4 text-center">Detail de Client</h6>
+        <div>
+            <div class="d-flex justify-content-around">
+                <div class="mb-3 text-center w-50">
+                    <h5  class="form-label">Image</h5>
+                    <img th:src="${imagePath}" alt="Uploaded image" class="w-75 h-100">
+
+                </div>
+                <div>
+                    <div class="mb-3">
+                        <h5  class="form-label">Nom</h5>
+                        <label class="form-label" th:text="${client.nom}"></label>
+                    </div>
+                    <div class="mb-3">
+                        <h5  class="form-label">Prenom</h5>
+                        <label class="form-label" th:text="${client.prenom}"></label>
+                    </div>
+                    <div class="mb-3">
+                        <h5  class="form-label">Téléphone</h5>
+                        <label class="form-label" th:text="${client.telephone}"></label>
+                    </div>
+                    <div class="mb-3">
+                        <h5  class="form-label">CIN</h5>
+                        <label class="form-label" th:text="${client.cin}"></label>
+                    </div>
+
+                </div>
+                <div>
+                    <div class="mb-3">
+                        <h5  class="form-label">Date de Naissance</h5>
+                        <label class="form-label" th:text="${client.date_de_naissance}"></label>
+                    </div>
+                    <div class="mb-3">
+                        <h5  class="form-label">Address</h5>
+                        <label class="form-label" th:text="${client.adresse}"></label>
+                    </div>
+                    <div class="mb-3">
+                        <h5 class="form-label">Login</h5>
+                        <label class="form-label" th:text="${client.login}"></label>
+                    </div>
+                </div>
+            </div>
+
+            <a href="/Modifier_Profil" class="btn btn-warning">Modifier votre profil</a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

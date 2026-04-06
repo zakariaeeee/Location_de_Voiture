@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="layoutadmin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="bg-light rounded h-100 p-4 justify-content-around">
+        <h6 class="mb-4 text-center">Detail d'Admin</h6>
+        <div>
+            <div class="d-flex justify-content-around">
+                <div class="mb-3 text-center w-50">
+                    <h5  class="form-label">Image</h5>
+                    <img th:src="${imagePath}" alt="Uploaded image" class="w-75 h-100">
+
+                </div>
+                <div>
+                    <div class="mb-3">
+                        <h5  class="form-label">Nom</h5>
+                        <label class="form-label" th:text="${admin.nom}"></label>
+                    </div>
+                    <div class="mb-3">
+                        <h5  class="form-label">Prenom</h5>
+                        <label class="form-label" th:text="${admin.prenom}"></label>
+                    </div>
+                    <div class="mb-3">
+                        <h5  class="form-label">Téléphone</h5>
+                        <label class="form-label" th:text="${admin.telephone}"></label>
+                    </div>
+                </div>
+                <div>
+
+                    <div class="mb-3">
+                        <h5  class="form-label">Email address</h5>
+                        <label class="form-label" th:text="${admin.email}"></label>
+                    </div>
+                    <div class="mb-3">
+                        <h5 class="form-label">Login</h5>
+                        <label class="form-label" th:text="${admin.login}"></label>
+                    </div>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+</div>
+</body>
+</html>

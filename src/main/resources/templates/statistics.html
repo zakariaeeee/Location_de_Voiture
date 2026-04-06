@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layoutadmin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.10.1/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.js" integrity="sha512-+IpCthlNahOuERYUSnKFjzjdKXIbJ/7Dd6xvUp+7bEw0Jp2dg6tluyxLs+zq9BMzZgrLv8886T4cBSqnKiVgUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.css" integrity="sha512-cznfNokevSG7QPA5dZepud8taylLdvgr0lDqw/FEZIhluFsSwyvS81CMnRdrNSKwbsmc43LtRd2/WMQV+Z85AQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="d-flex justify-content-center ">
+        <div class="d-flex flex-column m-5 w-100">
+            <h4 class="text-center text-primary">Reservations payer</h4>
+            <div  class="d-flex justify-content-center" id="chart2"></div>
+        </div>
+       <div class="d-flex flex-column  m-5 w-100">
+           <h4 class="text-center text-primary">Reservations Non payer</h4>
+           <div  class="d-flex justify-content-center" id="chart3"></div>
+       </div>
+
+    </div>
+    <div class="d-flex justify-content-center ">
+        <div class="d-flex flex-column m-5 w-100">
+            <h4 class="text-center text-primary">Reservations</h4>
+            <div  class="d-flex justify-content-center" id="chart1"></div>
+        </div>
+        <div class="d-flex flex-column m-5 w-100">
+            <h4 class="text-center text-primary">voiture desponible/indisponible</h4>
+            <div  class="d-flex justify-content-center" id="chart5"></div>
+        </div>
+    </div>
+    <h4 class="text-center text-primary" >Reservation par mois </h4>
+    <div  class="d-flex justify-content-center" id="chart4"></div>
+</div>
+
+
+</body>
+</html>
+<script >
+
+
+    var chart5 = c3.generate({
+        bindto: "#chart5",
+        data: {
+            columns: [
+                ['desponible',  [[${CountVoitureDesponible}]]],
+                ['indisponible',  [[${CountVoitureNondesponible}]]],
+
+            ],
+            type: 'pie'
+        },
+        pie: {
+            label: {
+                format: function (value, ratio, id) {
+                    return d3.format('')(value);
+                }
+            }
+        }
+    });
+
+</script>
+
+<script >
+
+
+    var chart1 = c3.generate({
+        bindto: "#chart1",
+        data: {
+            columns: [
+                ['En Attent',  [[${count_reservationEnAttent}]]],
+                ['Accepter',  [[${count_reservationAccepter}]]],
+                ['Refuser',  [[${count_reservationRefuser}]]],
+            ],
+            type: 'pie'
+        },
+        pie: {
+            label: {
+                format: function (value, ratio, id) {
+                    return d3.format('')(value);
+                }
+            }
+        }
+    });
+
+</script>
+<script>
+
+    var chart2 = c3.generate({
+        bindto: "#chart2",
+        data: {
+            columns: [
+                ['payer',[[${count_reservationPayer}]]]
+            ],
+            type: 'gauge',
+            onclick: function (d, i) { console.log("onclick", d, i); },
+            onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+            onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+        },
+        gauge: {
+      label: {
+            format: function(value, ratio) {
+                return value;
+         },
+          show: true // to turn off the min/max labels.
+        },
+//    min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
+   max: [[${max_reservation}]], // 100 is default
+  // units: ' payer',
+//    width: 39 // for adjusting arc thickness
+        },
+        color: {
+            pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
+            threshold: {
+//            unit: 'value', // percentage is default
+//            max: 200, // 100 is default
+                values: [30, 60, 90, 100]
+            }
+        },
+        size: {
+            height: 180
+        }
+    });
+</script>
+<script>
+
+    var chart3 = c3.generate({
+        bindto: "#chart3",
+        data: {
+            columns: [
+                ['Non Payer',[[${count_reservationNoPayer}]]]
+            ],
+            type: 'gauge',
+            onclick: function (d, i) { console.log("onclick", d, i); },
+            onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+            onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+        },
+        gauge: {
+            label: {
+                format: function(value, ratio) {
+                    return value;
+                },
+                show: true // to turn off the min/max labels.
+            },
+//    min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
+            max: [[${max_reservation}]], // 100 is default
+            // units: ' payer',
+//    width: 39 // for adjusting arc thickness
+        },
+        color: {
+            pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
+            threshold: {
+//            unit: 'value', // percentage is default
+//            max: 200, // 100 is default
+                values: [30, 60, 90, 100]
+            }
+        },
+        size: {
+            height: 180
+        }
+    });
+</script>
+
+<script th:inline="javascript" >
+
+
+    var chart4 = c3.generate({
+        bindto: "#chart4",
+
+        data: {
+
+            columns: [
+                ['[[${j1}]]', [[${month1}]]],
+                ['[[${f2}]]', [[${month2}]]],
+                ['[[${m3}]]', [[${month3}]]],
+                ['[[${a4}]]', [[${month4}]]],
+                ['[[${m5}]]', [[${month5}]]],
+                ['[[${j6}]]', [[${month6}]]],
+                ['[[${ju7}]]', [[${month7}]]],
+                ['[[${au8}]]', [[${month8}]]],
+                ['[[${sep9}]]', [[${month9}]]],
+                ['[[${oc10}]]', [[${month10}]]],
+                ['[[${no11}]]', [[${month11}]]],
+                ['[[${dec12}]]',[[${month12}]]],
+
+
+
+            ],
+            type: 'bar'
+        },
+        bar: {
+            width: {
+                ratio: 0.5 // this makes bar width 50% of length between ticks
+            }
+            // or
+            //width: 100 // this makes bar width 100px
+        }
+    });
+
+</script>

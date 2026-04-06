@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="layoutadmin.html" >
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+</head>
+<body>
+<div layout:fragment="content">
+<div class="container">
+  <h3 class="text-center text-primary"> reservations refuser</h3>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th> client</th>
+      <th> voiture</th>
+      <th>date de debut</th>
+      <th>date de fin</th>
+      <th>date de reservation</th>
+      <th>admin</th>
+      <th>status</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="r:${reservationsRefuser}" >
+      <td th:text="${r.id}"></td>
+      <td th:text="${r.client.nom}"></td>
+      <td th:text="${r.voiture.nom}"></td>
+      <td th:text="${r.date_de_debut}"></td>
+      <td th:text="${r.date_de_fin}"></td>
+      <td th:text="${r.date_de_reservation}"></td>
+      <td th:text="${r.admin.nom}"></td>
+      <td th:text="${r.status}"></td>
+
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+</div>
+</body>
+</html>

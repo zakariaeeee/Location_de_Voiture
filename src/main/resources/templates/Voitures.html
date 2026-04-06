@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="layoutadmin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>List Voiture</title>
+</head>
+<div layout:fragment="content">
+    <div class="col-12">
+        <div class="bg-light rounded h-100 p-4">
+            <h6 class="mb-4">list des Voiture</h6>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+       <th scope="col">Matricule</th>
+       <th scope="col">Nom</th>
+       <th scope="col">Marque</th>
+       <th scope="col">Model</th>
+       <th scope="col">Détail</th>
+       <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+    <tr th:each="c:${voitures}">
+        <th scope="col" th:text="${c.matricule}"></th>
+        <th scope="col" th:text="${c.nom}"></th>
+        <th scope="col" th:text="${c.marque}"></th>
+        <th scope="col" th:text="${c.model}"></th>
+        <th><a class="btn btn-info" th:href="@{/Admin/Detail_Voiture/{matricule}('matricule'=${c.matricule})}">Détail </a></th>
+        <th scope="col" class="d-flex justify-content-around">
+            <a class="btn btn-warning"  th:href="@{/Admin/Modifier_Voiture/{matricule}('matricule'=${c.matricule})}">Modifier</a>
+            <a class="btn btn-danger" th:href="@{/Admin/Supprimer_Voiture/{matricule}('matricule'=${c.matricule})}">Supprimer</a>
+        </th>
+    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
